@@ -1,4 +1,9 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using LectureSpacesApp.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<LectureSpacesAppContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("LectureSpacesAppContext") ?? throw new InvalidOperationException("Connection string 'LectureSpacesAppContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
