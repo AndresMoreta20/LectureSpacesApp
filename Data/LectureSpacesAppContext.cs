@@ -4,10 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using LectureSpacesApp.models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace LectureSpacesApp.Data
 {
-    public class LectureSpacesAppContext : DbContext
+    public class LectureSpacesAppContext : IdentityDbContext
     {
         public LectureSpacesAppContext(DbContextOptions<LectureSpacesAppContext> options)
             : base(options)

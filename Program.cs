@@ -1,9 +1,14 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using LectureSpacesApp.Data;
+using Microsoft.AspNetCore.Identity;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<LectureSpacesAppContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("LectureSpacesAppContext") ?? throw new InvalidOperationException("Connection string 'LectureSpacesAppContext' not found.")));
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    
+    .AddEntityFrameworkStores<LectureSpacesAppContext>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -22,8 +27,11 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseAuthentication();;
+
 
 app.UseAuthorization();
+app.MapRazorPages();
 
 app.MapControllerRoute(
     name: "default",
