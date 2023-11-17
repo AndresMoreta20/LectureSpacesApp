@@ -2,7 +2,88 @@
     ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome admin</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div id="app" class="home-page">
+    <div class="text-center">
+        <h1 class="display-4">Welcome Admin</h1>
+       
+    </div>
+
+    <div class="table-buttons">
+        <!-- Buttons to redirect to other MVC views -->
+        <a class="btn btn-primary" asp-action="Index" asp-controller="LectureSpaceComponents">Lecture Spaces</a>
+        <a class="btn btn-primary" asp-action="Index" asp-controller="Cuestionarios">Cuestionarios</a>
+        <a class="btn btn-primary" asp-action="Index" asp-controller="Usuarios">Usuarios</a>
+        <!-- Add similar buttons for other controllers (Usuario, Video, etc.) -->
+    </div>
+
+    <lecture-space-table></lecture-space-table>
+    <cuestionario-table></cuestionario-table>
+    <user-table></user-table>
+  
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+    <script>
+        Vue.component('lecture-space-table', {
+            template: `
+                        <div>
+                            <h1></h1>
+                            <!-- Your Vue table code for LectureSpace goes here -->
+                        </div>
+                    `
+           
+        });
+
+        Vue.component('cuestionario-table', {
+            template: `
+                        <div>
+                            <h1></h1>
+                            <!-- Your Vue table code for Cuestionario goes here -->
+                        </div>
+                    `
+            
+        });
+
+        Vue.component('user-table', {
+            template: `
+                        <div>
+                            <h1></h1>
+                            <p>
+                                <a asp-action="Create">Create New</a>
+                            </p>
+                            <table class="table">
+                                <!-- Your User table code goes here -->
+                            </table>
+                        </div>
+                    `
+            // Add your Vue data, methods, etc., as needed
+        });
+
+        // Include similar Vue components for Usuario and Video tables
+
+        new Vue({
+            el: "#app",
+            data: {
+                // Add any necessary data properties here
+            }
+        });
+    </script>
+
+    <style>
+        .home-page {
+            background-color: #363636;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .table-buttons {
+            margin-bottom: 20px;
+        }
+
+        /* Add any additional styling to match the previous format */
+    </style>
 </div>
