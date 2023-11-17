@@ -9,11 +9,12 @@ namespace LectureSpacesApp.Data
 {
     public class LectureSpacesAppContext : DbContext
     {
-        public LectureSpacesAppContext (DbContextOptions<LectureSpacesAppContext> options)
+        public LectureSpacesAppContext(DbContextOptions<LectureSpacesAppContext> options)
             : base(options)
         {
         }
 
+        public DbSet<LectureSpacesApp.models.Admin>  Admin { get; set; }
         public DbSet<LectureSpacesApp.models.Respuesta> Respuesta { get; set; } = default!;
 
         public DbSet<LectureSpacesApp.models.Pregunta>? Pregunta { get; set; }
